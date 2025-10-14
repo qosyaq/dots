@@ -2,3 +2,6 @@ weights/
 .venv/
 *.pyc
 **/__pycache__/
+*.md
+*.log
+*.pid

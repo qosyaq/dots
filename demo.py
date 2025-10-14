@@ -4,13 +4,13 @@ from ocr.parser import DotsOCRParser
 
 def main():
     ocr = DotsOCRParser(
-        model_name="model",
+        model_name="dots_ocr",
         ip="localhost",
         port=8000,
         num_thread=2,
         dpi=200,
     )
-    input_file = "demo/pdfs/Акт на ЗУ.pdf"
+    input_file = "demo/pdfs/Акт на ЗУ марк.pdf"
 
     start = time.time()
     results = ocr.parse_file(
