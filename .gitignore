@@ -1,0 +1,4 @@
+weights/
+.venv/
+*.pyc
+**/__pycache__/
