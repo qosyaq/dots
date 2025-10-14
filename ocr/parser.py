@@ -1,5 +1,4 @@
 import os
-import json
 from tqdm import tqdm
 from multiprocessing.pool import ThreadPool
 from ocr.model.inference import inference_with_vllm
@@ -12,6 +11,8 @@ from ocr.utils.layout_utils import (
     pre_process_bboxes,
 )
 from ocr.utils.format_transformer import layoutjson2md
+
+import time, threading
 
 
 class DotsOCRParser:
@@ -27,8 +28,6 @@ class DotsOCRParser:
         max_completion_tokens=16384,
         num_thread=1,
         dpi=200,
-        min_pixels=None,
-        max_pixels=None,
     ):
         self.dpi = dpi
         self.protocol = protocol
@@ -39,13 +38,9 @@ class DotsOCRParser:
         self.top_p = top_p
         self.max_completion_tokens = max_completion_tokens
         self.num_thread = num_thread
-        self.min_pixels = min_pixels
-        self.max_pixels = max_pixels
-
-        assert self.min_pixels is None or self.min_pixels >= MIN_PIXELS
-        assert self.max_pixels is None or self.max_pixels <= MAX_PIXELS
 
     def _inference_with_vllm(self, image, prompt):
+        start = time.perf_counter()
         response = inference_with_vllm(
             image,
             prompt,
@@ -57,7 +52,9 @@ class DotsOCRParser:
             top_p=self.top_p,
             max_completion_tokens=self.max_completion_tokens,
         )
-        return response
+        duration = time.perf_counter() - start
+        thread_name = threading.current_thread().name
+        return response, duration, thread_name
 
     def get_prompt(
         self,
@@ -65,8 +62,6 @@ class DotsOCRParser:
         bbox=None,
         origin_image=None,
         image=None,
-        min_pixels=None,
-        max_pixels=None,
     ):
         prompt = dict_promptmode_to_prompt[prompt_mode]
         if prompt_mode == "prompt_grounding_ocr":
@@ -77,8 +72,6 @@ class DotsOCRParser:
                 bboxes,
                 input_width=image.width,
                 input_height=image.height,
-                min_pixels=min_pixels,
-                max_pixels=max_pixels,
             )[0]
             prompt = prompt + str(bbox)
         return prompt
@@ -93,36 +86,20 @@ class DotsOCRParser:
         bbox=None,
         fitz_preprocess=False,
     ):
-        min_pixels, max_pixels = self.min_pixels, self.max_pixels
-        if prompt_mode == "prompt_grounding_ocr":
-            min_pixels = min_pixels or MIN_PIXELS
-            max_pixels = max_pixels or MAX_PIXELS
-        if min_pixels is not None:
-            assert min_pixels >= MIN_PIXELS, f"min_pixels should >= {MIN_PIXELS}"
-        if max_pixels is not None:
-            assert max_pixels <= MAX_PIXELS, f"max_pixels should <= {MAX_PIXELS}"
-
         if source == "image" and fitz_preprocess:
             image = get_image_by_fitz_doc(origin_image, target_dpi=self.dpi)
-            image = fetch_image(image, min_pixels=min_pixels, max_pixels=max_pixels)
+            image = fetch_image(image)
         else:
-            image = fetch_image(
-                origin_image, min_pixels=min_pixels, max_pixels=max_pixels
-            )
+            image = fetch_image(origin_image)
         input_height, input_width = smart_resize(image.height, image.width)
-        prompt = self.get_prompt(
-            prompt_mode,
-            bbox,
-            origin_image,
-            image,
-            min_pixels=min_pixels,
-            max_pixels=max_pixels,
-        )
-        response = self._inference_with_vllm(image, prompt)
+        prompt = self.get_prompt(prompt_mode, bbox, origin_image, image)
+        response, duration, thread_name = self._inference_with_vllm(image, prompt)
         result = {
             "page_no": page_idx,
             "input_height": input_height,
             "input_width": input_width,
+            "duration": duration,
+            "thread": thread_name,
         }
         if source == "pdf":
             save_name = f"{save_name}_page_{page_idx}"
@@ -130,27 +107,22 @@ class DotsOCRParser:
         if prompt_mode in [
             "prompt_layout_all_en",
         ]:
-            cells, _ = post_process_output(
-                response,
-                prompt_mode,
-                origin_image,
-                image,
-                min_pixels=min_pixels,
-                max_pixels=max_pixels,
+            cells, json_failed = post_process_output(
+                response, prompt_mode, origin_image, image
             )
-            md_content = layoutjson2md(
-                origin_image, cells, text_key="text", no_page_hf=False
-            )
-            result.update(
-                {
-                    "text": md_content,
-                }
-            )
-
-            with open(f"pag_{page_idx}", "w", encoding="utf-8") as md_file:
-                md_file.write(md_content)
+            if json_failed:
+                result["text"] = response.strip()
+            else:
+                md_content = layoutjson2md(
+                    origin_image, cells, text_key="text", no_page_hf=False
+                )
+                result["text"] = md_content
         else:
             result["text"] = response.strip()
+
+        with open(f"pag_{page_idx}", "w", encoding="utf-8") as md_file:
+            md_file.write(result["text"])
+
         return result
 
     def parse_image(
@@ -173,12 +145,10 @@ class DotsOCRParser:
         result["file_path"] = input_path
         return [result]
 
-    def parse_pdf(self, input_path, filename, prompt_mode, fitz_preprocess=False):
+    def parse_pdf(self, input_path, filename, prompt_mode):
 
         def _execute_task(task_args):
-            return self._parse_single_image(
-                **task_args, fitz_preprocess=fitz_preprocess
-            )
+            return self._parse_single_image(**task_args)
 
         print(f"loading pdf: {input_path}")
 
@@ -225,9 +195,7 @@ class DotsOCRParser:
 
         if file_ext == ".pdf":
 
-            results = self.parse_pdf(
-                input_path, filename, prompt_mode, fitz_preprocess=True
-            )
+            results = self.parse_pdf(input_path, filename, prompt_mode)
 
         elif file_ext in image_extensions:
 
