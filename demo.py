@@ -10,7 +10,7 @@ def main():
         num_thread=2,
         dpi=200,
     )
-    input_file = "demo/pdfs/Акт на ЗУ марк.pdf"
+    input_file = "demo/pdfs/Постановление акима марк.pdf"
 
     start = time.time()
     results = ocr.parse_file(

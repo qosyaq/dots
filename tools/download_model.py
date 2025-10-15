@@ -6,10 +6,11 @@ if __name__ == '__main__':
     parser = ArgumentParser()
     parser.add_argument('--type', '-t', type=str, default="huggingface")
     parser.add_argument('--name', '-n', type=str, default="rednote-hilab/dots.ocr")
+    parser.add_argument('--dir', '-d', type=str, default="weights/DotsOCR")
     args = parser.parse_args()
     script_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     print(f"Attention: The model save dir dots.ocr should be replace by a name without `.` like DotsOCR, util we merge our code to transformers.")
-    model_dir = os.path.join(script_dir, "weights/DotsOCR")
+    model_dir = os.path.join(script_dir, args.dir)
     if not os.path.exists(model_dir):
         os.makedirs(model_dir)
     if args.type == "huggingface":
