@@ -10,7 +10,7 @@ def inference(
     port: int = 8001,
     temperature: float = 0.1,
     top_p: float = 0.9,
-    max_completion_tokens: int = 4096,
+    max_completion_tokens: int = 2048,
     model_name: str = "qwen-14b",
 ) -> str | None:
     addr = f"{protocol}://{ip}:{port}/v1"

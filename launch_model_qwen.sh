@@ -2,9 +2,10 @@
 
 hf_model_path=./weights/Qwen-14B         # путь к весам
 model_name=qwen-14b                      # имя сервируемой модели
-gpu_memory_utilization=0.95             # не забивать VRAM на 100%
+gpu_memory_utilization=0.68              # не забивать VRAM на 100%
 tensor_parallel_size=1                   # 1 GPU
 port=8001                                # порт сервера
+max_model_len=16384                      # максимальная длина контекста
 
 
 
@@ -25,6 +26,7 @@ echo "Запуск модели '${model_name}'..."
 nohup vllm serve ${hf_model_path} \
   --tensor-parallel-size ${tensor_parallel_size} \
   --gpu-memory-utilization ${gpu_memory_utilization} \
+  --max-model-len ${max_model_len} \
   --port ${port} \
   --chat-template-content-format string \
   --served-model-name ${model_name} \

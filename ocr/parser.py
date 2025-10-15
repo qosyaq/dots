@@ -120,13 +120,16 @@ class DotsOCRParser:
         else:
             result["text"] = response.strip()
 
-        with open(f"pag_{page_idx}.md", "w", encoding="utf-8") as md_file:
+        os.makedirs("results", exist_ok=True)
+        with open(f"results/pag_{page_idx}.md", "w", encoding="utf-8") as md_file:
             md_file.write(result["text"])
             md_file.write(
                 "\n\n----------------------------------------------------------------\n\n"
             )
             md_file.write(f"Source: {result['thread']}\n")
             md_file.write(f"Duration: {result["duration"]} seconds\n")
+        
+        image.save(f"results/{save_name}.png")
 
         return result
 

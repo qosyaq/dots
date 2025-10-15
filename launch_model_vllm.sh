@@ -2,10 +2,10 @@
 
 hf_model_path=./weights/DotsOCR          # путь к весам
 model_name=dots_ocr                      # имя сервируемой модели
-gpu_memory_utilization=0.30              # не забивать VRAM на 100%
+gpu_memory_utilization=0.265             # не забивать VRAM на 100%
 tensor_parallel_size=1                   # 1 GPU
 port=8000                                # порт сервера vLLM
-
+max_model_len=131072                     # максимальная длина контекста
 
 
 # === Проверка: есть ли уже запущенный процесс vLLM с этой моделью ===
