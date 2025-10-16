@@ -1,10 +1,11 @@
 from openai import OpenAI
-import os, requests
+import requests
+from qwen.prompt import prompt_get_lands
 
 
 def inference(
-    system_prompt: str,
-    prompt: str,
+    system_prompt: str = prompt_get_lands,
+    prompt: str = "",
     protocol: str = "http",
     ip: str = "localhost",
     port: int = 8001,
@@ -15,16 +16,15 @@ def inference(
 ) -> str | None:
     addr = f"{protocol}://{ip}:{port}/v1"
     client = OpenAI(api_key="dummy", base_url=addr)
-    
+
     prompt = f"""TEXT TO ANALYZE:
                  {prompt}
                  DON'T FORGET ABOUT RULES ABOVE!
               """
 
     messages = [
-        
         {"role": "system", "content": [{"type": "text", "text": system_prompt}]},
-        {"role": "user", "content": [{"type": "text", "text": prompt}]}
+        {"role": "user", "content": [{"type": "text", "text": prompt}]},
     ]
 
     try:
@@ -72,9 +72,9 @@ if __name__ == "__main__":
                     Input: "Сенокос 50 га, Пашня 18 га, дорога 10 га"
                     Output: {"arable_land": "18 га", "pastures": null}
     """
-    
+
     with open("qwen/prompt.txt", "r", encoding="utf-8") as f:
         prompt = f.read().strip()
-    
+
     result = inference(system_prompt, prompt)
     print(result)

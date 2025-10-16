@@ -111,7 +111,8 @@ class DotsOCRParser:
                 response, prompt_mode, origin_image, image
             )
             if json_failed:
-                result["text"] = response.strip()
+                # result["text"] = response.strip()
+                result["text"] = "Error: Failed to parse the model output."
             else:
                 md_content = layoutjson2md(
                     origin_image, cells, text_key="text", no_page_hf=False
@@ -128,7 +129,7 @@ class DotsOCRParser:
             )
             md_file.write(f"Source: {result['thread']}\n")
             md_file.write(f"Duration: {result["duration"]} seconds\n")
-        
+
         image.save(f"results/{save_name}.png")
 
         return result
@@ -201,7 +202,7 @@ class DotsOCRParser:
     ):
         filename, file_ext = os.path.splitext(os.path.basename(input_path))
 
-        if file_ext == ".pdf":
+        if file_ext in [".pdf", ".PDF"]:
 
             results = self.parse_pdf(input_path, filename, prompt_mode)
 

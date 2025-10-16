@@ -1,0 +1,122 @@
+[
+    {
+        "cadastral_number": null,
+        "arable_land": null,
+        "pastures": null,
+        "hayfields": null,
+        "other_land": null,
+        "total_area": null,
+        "encumbrances": null,
+        "owner": null,
+        "lease_term": null,
+        "document_type": "ФОРМА 2"
+    },
+    {
+        "cadastral_number": "01-278-051-040",
+        "arable_land": null,
+        "pastures": null,
+        "hayfields": null,
+        "other_land": null,
+        "total_area": "352.3 га",
+        "encumbrances": "нет",
+        "owner": "Мынбаев Ерлан Ахатович",
+        "lease_term": "49 лет",
+        "document_type": "ГОС АКТ ЗЕМЛИ"
+    },
+    {
+        "cadastral_number": null,
+        "arable_land": null,
+        "pastures": null,
+        "hayfields": null,
+        "other_land": null,
+        "total_area": null,
+        "encumbrances": null,
+        "owner": null,
+        "lease_term": null,
+        "document_type": "НЕОПРЕДЕЛЕНО"
+    },
+    {
+        "cadastral_number": null,
+        "arable_land": null,
+        "pastures": null,
+        "hayfields": null,
+        "other_land": null,
+        "total_area": null,
+        "encumbrances": null,
+        "owner": null,
+        "lease_term": null,
+        "document_type": "НЕОПРЕДЕЛЕНО"
+    },
+    {
+        "cadastral_number": "01-278-051-040",
+        "arable_land": "352,0 га",
+        "pastures": null,
+        "hayfields": null,
+        "other_land": null,
+        "total_area": "352,0 га",
+        "encumbrances": "нет",
+        "owner": "ГУ «Отдел земельных отношений Жаксынского района\"",
+        "lease_term": "42 года",
+        "document_type": "ДОГОВОР АРЕНДЫ"
+    },
+    {
+        "cadastral_number": null,
+        "arable_land": null,
+        "pastures": null,
+        "hayfields": null,
+        "other_land": null,
+        "total_area": null,
+        "encumbrances": null,
+        "owner": null,
+        "lease_term": "до 2042 года",
+        "document_type": "ДОГОВОР АРЕНДЫ"
+    },
+    {
+        "cadastral_number": null,
+        "arable_land": "352,0 га",
+        "pastures": null,
+        "hayfields": null,
+        "other_land": "0,3 га",
+        "total_area": "352,3 га",
+        "encumbrances": "нет",
+        "owner": "Мынбаев Е.А.",
+        "lease_term": "на 49 лет",
+        "document_type": "ПОСТАНОВЛЕНИЕ АКИМАТА"
+    },
+    {
+        "cadastral_number": "01:278:051:040",
+        "arable_land": null,
+        "pastures": null,
+        "hayfields": null,
+        "other_land": null,
+        "total_area": "352.3 га",
+        "encumbrances": "нет",
+        "owner": "МЫНБАЕВ ЕРЛАН АХАТОВИЧ",
+        "lease_term": null,
+        "document_type": "ФОРМА 2"
+    },
+    {
+        "cadastral_number": null,
+        "arable_land": null,
+        "pastures": null,
+        "hayfields": null,
+        "other_land": null,
+        "total_area": null,
+        "encumbrances": "нет",
+        "owner": "Мынбаев Ерлан Ахатович",
+        "lease_term": "до 2048 года",
+        "document_type": "ФОРМА 2"
+    },
+    {
+        "cadastral_number": null,
+        "arable_land": null,
+        "pastures": null,
+        "hayfields": null,
+        "other_land": null,
+        "total_area": null,
+        "encumbrances": "да",
+        "owner": null,
+        "lease_term": null,
+        "document_type": "ФОРМА 2"
+    }
+]

@@ -1,0 +1,39 @@
+{
+    "merged": {
+        "cadastral_number": [],
+        "arable_land": [
+            "72 га",
+            "180 га"
+        ],
+        "pastures": [],
+        "hayfields": [],
+        "other_land": [
+            "0.3 га"
+        ],
+        "total_area": [
+            "180.3 га"
+        ],
+        "encumbrances": [],
+        "owner": [],
+        "lease_term": [
+            "с 2025 года 26 лет (до 2051)",
+            "до 2025",
+            "26 лет (до 2051)"
+        ]
+    },
+    "document_sources": {
+        "arable_land": [
+            "Договор Аренды"
+        ],
+        "other_land": [
+            "Договор Аренды"
+        ],
+        "total_area": [
+            "Постановление Акимата"
+        ],
+        "lease_term": [
+            "Постановление Акимата",
+            "Договор Аренды"
+        ]
+    }
+}

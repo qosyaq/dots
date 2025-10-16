@@ -1,0 +1,98 @@
+[
+    {
+        "cadastral_number": "05-078-024-645",
+        "arable_land": null,
+        "pastures": null,
+        "hayfields": null,
+        "other_land": null,
+        "total_area": "1252,4 га",
+        "encumbrances": "нет",
+        "owner": null,
+        "lease_term": "49 лет",
+        "document_type": "ГОС АКТ ЗЕМЛИ"
+    },
+    {
+        "cadastral_number": null,
+        "arable_land": null,
+        "pastures": null,
+        "hayfields": null,
+        "other_land": null,
+        "total_area": null,
+        "encumbrances": null,
+        "owner": null,
+        "lease_term": null,
+        "document_type": "ГОС АКТ ЗЕМЛИ"
+    },
+    {
+        "cadastral_number": "05-078-024-645",
+        "arable_land": "1204.9 га",
+        "pastures": null,
+        "hayfields": "47.5 га",
+        "other_land": null,
+        "total_area": "1252.4 га",
+        "encumbrances": "нет",
+        "owner": "Тарбағатай ауданының жер қатынастар бөлімі ММ",
+        "lease_term": "до 2062 года",
+        "document_type": "ДОГОВОР АРЕНДЫ"
+    },
+    {
+        "cadastral_number": null,
+        "arable_land": null,
+        "pastures": null,
+        "hayfields": null,
+        "other_land": null,
+        "total_area": null,
+        "encumbrances": null,
+        "owner": null,
+        "lease_term": "до 2061 года",
+        "document_type": "ДОГОВОР АРЕНДЫ"
+    },
+    {
+        "cadastral_number": null,
+        "arable_land": null,
+        "pastures": null,
+        "hayfields": "1204,9 га",
+        "other_land": "47,5 га",
+        "total_area": "1252,4 га",
+        "encumbrances": "нет",
+        "owner": "Уалиев Даулет",
+        "lease_term": "до 2070 года",
+        "document_type": "ПОСТАНОВЛЕНИЕ АКИМАТА"
+    },
+    {
+        "cadastral_number": null,
+        "arable_land": null,
+        "pastures": null,
+        "hayfields": null,
+        "other_land": null,
+        "total_area": null,
+        "encumbrances": null,
+        "owner": null,
+        "lease_term": null,
+        "document_type": "ФОРМА 2"
+    },
+    {
+        "cadastral_number": "05:078:024:645",
+        "arable_land": null,
+        "pastures": null,
+        "hayfields": null,
+        "other_land": null,
+        "total_area": null,
+        "encumbrances": "нет",
+        "owner": "Уалиев Даулет Мержакыпович",
+        "lease_term": "до 2048 года",
+        "document_type": "ФОРМА 2"
+    },
+    {
+        "cadastral_number": null,
+        "arable_land": null,
+        "pastures": null,
+        "hayfields": null,
+        "other_land": null,
+        "total_area": null,
+        "encumbrances": "нет",
+        "owner": null,
+        "lease_term": null,
+        "document_type": "ФОРМА 2"
+    }
+]

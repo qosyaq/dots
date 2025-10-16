@@ -1,0 +1,47 @@
+{
+    "merged": {
+        "cadastral_number": [
+            "10:151:032:185"
+        ],
+        "arable_land": [
+            "215.6 га"
+        ],
+        "pastures": [],
+        "hayfields": [
+            "5 га"
+        ],
+        "other_land": [
+            "54.2 га"
+        ],
+        "total_area": [
+            "6148 га"
+        ],
+        "encumbrances": [],
+        "owner": [],
+        "lease_term": [
+            "25 лет (до 2050)",
+            "до 0000 года"
+        ]
+    },
+    "document_sources": {
+        "cadastral_number": [
+            "Гос Акт Земли"
+        ],
+        "arable_land": [
+            "Договор Аренды"
+        ],
+        "hayfields": [
+            "Договор Аренды"
+        ],
+        "other_land": [
+            "Договор Аренды"
+        ],
+        "total_area": [
+            "Постановление Акимата"
+        ],
+        "lease_term": [
+            "Постановление Акимата",
+            "Договор Аренды"
+        ]
+    }
+}
