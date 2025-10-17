@@ -223,6 +223,7 @@ def preprocess_image(image_path=None, image=None):
 
     if rotate_angle != 0 and image is not None:
         image = image.rotate(-rotate_angle, expand=True)
+    print(f"[OSD Tesseract] Image rotated by {rotate_angle} degrees.")
 
     grayscale = image.convert("L")
     skew_angle = determine_skew(np.array(grayscale))
@@ -230,5 +231,6 @@ def preprocess_image(image_path=None, image=None):
     if skew_angle is not None and abs(skew_angle) > 0.1:
         rotated = sk_rotate(np.array(image), skew_angle, resize=True) * 255
         image = Image.fromarray(rotated.astype(np.uint8))
+    print(f"DESKEW] Image rotated by {rotate_angle} degrees.")
 
     return image

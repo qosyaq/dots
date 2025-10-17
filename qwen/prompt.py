@@ -2,8 +2,8 @@ prompt_get_lands = """"
                     Extract ONLY arable land and pasture data from the text:
 
                     KEYWORDS TO FIND:
-                    - Пашня/егістік → arable_land
-                    - Пастбища/Шабындық → pastures
+                    - Пашня/егістік -> arable_land
+                    - Пастбища/Шабындық -> pastures
 
                     RULES:
                     1. Search for these keywords only (case-insensitive)

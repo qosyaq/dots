@@ -16,7 +16,7 @@ def main():
         model_name="dots_ocr",
         ip="localhost",
         port=8000,
-        num_thread=2,
+        num_thread=1,
         dpi=200,
     )
     if args.path:

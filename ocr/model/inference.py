@@ -41,6 +41,7 @@ def inference_with_vllm(
             max_completion_tokens=max_completion_tokens,
             temperature=temperature,
             top_p=top_p,
+            extra_body={"repetition_penalty": 1.2},
         )
         response = response.choices[0].message.content
         return response
